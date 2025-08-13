@@ -108,7 +108,7 @@ class PaymentService extends BkashService
                 "mode" => "0011",
                 'payerReference' => $request['payerReference'],
                 'currency' => $request['currency'] ?? 'BDT',
-                'callbackURL' => $this->credential->getCallBackURL(),
+                'callbackURL' => $request['callbackURL'] ?? $this->credential->getCallBackURL(),
                 'amount' => strval($amount * 1.0),
                 'intent' => $request['intent'],
                 'merchantInvoiceNumber' => $request['merchantInvoiceNumber']
