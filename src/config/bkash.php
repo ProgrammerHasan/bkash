@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "bkash_log_enabled" => env("BKASH_LOG_ENABLED", false),
     "bkash_sandbox" => env("BKASH_SANDBOX", true),
     "bkash_username" => env("BKASH_USERNAME", "sandboxTokenizedUser02"),
     "bkash_password" => env("BKASH_PASSWORD", "sandboxTokenizedUser02@12345"),

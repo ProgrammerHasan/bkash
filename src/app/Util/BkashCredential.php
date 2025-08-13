@@ -11,6 +11,7 @@ class BkashCredential
     public $appSecret;
     public $username;
     public $password;
+    public $logEnabled;
 
     public function __construct($arr)
     {
@@ -22,6 +23,7 @@ class BkashCredential
         $this->password = $arr['bkash_password'];
         $this->callbackUrl = $arr['bkash_callback_url'];
         $this->sandbox = $arr['bkash_sandbox'];
+        $this->logEnabled = $arr['bkash_log_enabled'];
     }
 
     public function getURL($path): string

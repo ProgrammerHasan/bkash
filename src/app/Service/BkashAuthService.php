@@ -27,9 +27,11 @@ class BkashAuthService extends BkashService
         if (!$idToken) {
             $idToken = $this->grantToken()['id_token'];
             Cache::put($cacheKey, $idToken, now()->addMinutes(55)); // cache for 55 minutes
-            Log::info("bkashAuthService---> new token generated and cached");
-        } else {
-            Log::info("bkashAuthService---Token from existing cache");
+            if ($this->credential->logEnabled) {
+                Log::info("BkashAuthService -> New Token Generated and Cached");
+            }
+        } else if ($this->credential->logEnabled) {
+            Log::info("BkashAuthService -> Token from existing Cache");
         }
 
         return $idToken;

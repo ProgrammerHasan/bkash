@@ -22,15 +22,17 @@ class PaymentService extends BkashService
 
     private function storeLog($apiName, $url, $headers, $body, $response): void
     {
-        $log = [
-            'url' => $url,
-            'headers' => $headers,
-            'body' => $body,
-            'response' => $response,
-        ];
-        $key = 'bkash:log:' . $apiName;
+       if($this->credential->logEnabled) {
+           $log = [
+               'url' => $url,
+               'headers' => $headers,
+               'body' => $body,
+               'response' => $response,
+           ];
+           $key = 'bkash:log:' . $apiName;
 
-        Log::info($key . "=>" . json_encode($log));
+           Log::info($key . "=>" . json_encode($log));
+       }
     }
 
     public function grantToken()
