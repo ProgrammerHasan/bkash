@@ -37,6 +37,15 @@ php artisan vendor:publish --provider="ProgrammerHasan\Bkash\BkashServiceProvide
 php artisan make:controller Payment/BkashPaymentController
 ```
 
+### Enable or Disable bKash Log
+You can turn bKash logging on or off. (Only sandbox/testing mode.)
+
+Logs will be saved in the /storage/logs/laravel.log file.
+
+```bash
+"bkash_log_enabled" => env("BKASH_SANDBOX", false),
+```
+
 ## [Checkout (URL Based)](https://developer.bka.sh/docs/checkout-url-process-overview)
 
 ### 1. Create Payment
@@ -52,17 +61,25 @@ use ProgrammerHasan\Bkash\Facade\CheckoutUrl;
 
 class BkashPaymentController extends Controller
 {
-    public function pay(Request $request)
+    public function createPayment(Request $request)
     {
-        $request['payerReference'] = $paymentUid;
-        $request['amount'] = $amount;
-        $request['merchantInvoiceNumber'] = $paymentUid;
-        $request['callbackURL'] = $onBkashCallbackURL;
+        $request->validate([
+            'payment_uid' => 'required',
+            'amount' => 'required',
+            'invoice_no' => 'required',
+        ]);
+            
+        $data = [
+            'payerReference' => $request->get('payment_uid'), // your payments table uid
+            'amount' => $request->get('amount'),
+            'merchantInvoiceNumber' => $request->get('invoice_no'),
+            'callbackURL' => $request->get('bkash_callback_url'), // optional
+        ];
 
-        $request_data_json = $request;
-        
-        $response = BkashPayment::create($request_data_json);
-        return redirect($response->bkashURL);
+        $response = (array) BkashPayment::create($data);
+
+        if (isset($response['bkashURL'])) return redirect()->away($response['bkashURL']);
+        else return redirect()->back()->with('error-alert2', $response['statusMessage']);
     }
 }
 ```
@@ -151,10 +168,8 @@ $request['amount'] = $amount;
 $request['merchantInvoiceNumber'] = $paymentUid;
 $request['callbackURL'] = $onBkashCallbackURL;
 
-$request_data_json = json_encode($request);
-
-$response = BkashPayment::create($request_data_json);
-return redirect($response['bkashURL']);
+$response = BkashPayment::create($request);
+return redirect($response->bkashURL);
 ```
 
 ### [Capture](https://developer.bka.sh/docs/auth-capture-process-overview)

@@ -22,7 +22,7 @@ class PaymentService extends BkashService
 
     private function storeLog($apiName, $url, $headers, $body, $response): void
     {
-       if($this->credential->logEnabled) {
+       if($this->credential->logEnabled && $this->credential->sandbox) {
            $log = [
                'url' => $url,
                'headers' => $headers,

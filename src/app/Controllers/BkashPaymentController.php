@@ -15,18 +15,20 @@ class BkashPaymentController extends Controller
 
     public function createPayment(Request $request)
     {
-        $inv = uniqid();
-        $request['intent'] = 'sale';
-        $request['mode'] = '0011'; //0011 for checkout
-        $request['payerReference'] = $inv;
-        $request['currency'] = 'BDT';
-        $request['amount'] = 10;
-        $request['merchantInvoiceNumber'] = $inv;
-        $request['callbackURL'] = config("bkash.bkash_callback_url");
+        $request->validate([
+            'payment_uid' => 'required',
+            'amount' => 'required',
+            'invoice_no' => 'required',
+        ]);
 
-        $request_data_json = $request;
+        $data = [
+            'payerReference' => $request->get('payment_uid'), // your payments table uid
+            'amount' => $request->get('amount'),
+            'merchantInvoiceNumber' => $request->get('invoice_no'),
+            'callbackURL' => $request->get('bkash_callback_url'), // optional
+        ];
 
-        $response = (array) BkashPayment::create($request_data_json);
+        $response = (array) BkashPayment::create($data);
 
         if (isset($response['bkashURL'])) return redirect()->away($response['bkashURL']);
         else return redirect()->back()->with('error-alert2', $response['statusMessage']);
