@@ -56,7 +56,7 @@ class BkashPaymentController extends Controller
         $request['merchantInvoiceNumber'] = $paymentUid;
         $request['callbackURL'] = $onBkashCallbackURL;
 
-        $request_data_json = json_encode($request);
+        $request_data_json = $request;
         
         $response = BkashPayment::create($request_data_json);
         return redirect($response->bkashURL);
