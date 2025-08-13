@@ -1,0 +1,39 @@
+{
+  "name": "programmerhasan/bkash",
+  "description": "Bkash Payment Integration for Laravel",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Programmer Hasan",
+      "email": "programmerhasan.s@gmail.com"
+    }
+  ],
+  "keywords": [
+    "laravel-bkash",
+    "bkash-payment",
+    "bkash",
+    "bkash-payment-gateway",
+    "laravel-bkash-payment",
+    "laravel-bkash-payment-tokenize"
+  ],
+  "autoload": {
+    "psr-4": {
+      "ProgrammerHasan\\Bkash\\": "src/",
+      "ProgrammerHasan\\Bkash\\App\\": "src/app/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.4|^8.0|^8.1|^8.2",
+    "illuminate/support": "~6|~7|~8|~9|^10.0|^11.0|^12.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ProgrammerHasan\\Bkash\\BkashServiceProvider"
+      ]
+    }
+  }
+}
