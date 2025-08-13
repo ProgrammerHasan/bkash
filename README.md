@@ -34,7 +34,7 @@ php artisan vendor:publish --provider="ProgrammerHasan\Bkash\BkashServiceProvide
 php artisan make:controller Payment/BkashPaymentController
 ```
 
-## [CHECKOUT (URL BASED)](https://developer.bka.sh/docs/checkout-url-process-overview)
+## [Checkout (URL Based)](https://developer.bka.sh/docs/checkout-url-process-overview)
 
 ### 1. Create Payment
 
@@ -138,7 +138,7 @@ Route::group(['middleware' => ['web']], static function () {
     }
 ```
 
-## [AUTH & CAPTURE (URL)](https://developer.bka.sh/docs/auth-capture-process-overview)
+## [Auth & Capture (URL)](https://developer.bka.sh/docs/auth-capture-process-overview)
 
 ### Create Payment
 
