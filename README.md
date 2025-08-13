@@ -3,6 +3,9 @@
 Welcome to the **bKash Laravel Package**!  
 This package allows seamless integration with the bKash payment gateway in Laravel, making transactions quick and hassle-free.
 
+It supports Checkout (URL), Auth & Capture, Refund, and Search Transactions with easy configuration.
+Built-in automatic grantToken caching (1 hour) ensures full compliance with the latest bKash Tokenized API rules and prevents account lock issues.
+
 ---
 
 ## 📦 Installation
