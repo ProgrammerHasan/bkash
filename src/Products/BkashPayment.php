@@ -6,61 +6,61 @@ use ProgrammerHasan\Bkash\app\Service\PaymentService;
 
 class BkashPayment
 {
-    private PaymentService $checkoutUrl;
+    private PaymentService $paymentService;
 
     public function __construct()
     {
-        $this->checkoutUrl = new PaymentService();
+        $this->paymentService = new PaymentService();
     }
 
     public function create($request = [])
     {
-        return $this->checkoutUrl->createPayment($request);
+        return $this->paymentService->createPayment($request);
     }
 
     public function execute($paymentID)
     {
-        return $this->checkoutUrl->executePayment($paymentID);
+        return $this->paymentService->executePayment($paymentID);
     }
 
     public function verify($paymentID)
     {
-        return $this->checkoutUrl->verifyPayment($paymentID);
+        return $this->paymentService->verifyPayment($paymentID);
     }
 
     public function query($paymentID)
     {
-        return $this->checkoutUrl->queryPayment($paymentID);
+        return $this->paymentService->queryPayment($paymentID);
     }
 
     public function search($trxID)
     {
-        return $this->checkoutUrl->searchTransaction($trxID);
+        return $this->paymentService->searchTransaction($trxID);
     }
 
     public function refund($paymentID, $trxID, $amount)
     {
-        return $this->checkoutUrl->refundTransaction($paymentID, $trxID, $amount);
+        return $this->paymentService->refundTransaction($paymentID, $trxID, $amount);
     }
 
     public function capture($paymentID)
     {
-        return $this->checkoutUrl->capturePayment($paymentID);
+        return $this->paymentService->capturePayment($paymentID);
     }
 
     public function void($paymentID)
     {
-        return $this->checkoutUrl->voidPayment($paymentID);
+        return $this->paymentService->voidPayment($paymentID);
     }
 
     public function failed($message)
     {
-        return $this->checkoutUrl->failed($message);
+        return $this->paymentService->failed($message);
     }
 
     public function success($txrID)
     {
-        return $this->checkoutUrl->success($txrID);
+        return $this->paymentService->success($txrID);
     }
 
 }
