@@ -1,6 +1,6 @@
 <?php
 
-namespace ProgrammerHasan\Bkash\App\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use ProgrammerHasan\Bkash\Facade\BkashPayment;
