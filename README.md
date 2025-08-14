@@ -92,7 +92,7 @@ Logs will be saved in the /storage/logs/laravel.log file.
 ```bash
 php artisan vendor:publish --provider="ProgrammerHasan\Bkash\BkashServiceProvider" --tag="routes"
 ```
-"bkash.php" Route include in web.php
+"bkash.php" Route include in web.php (require 'bkash2.php';)
 
 ### Publish a controller
 
