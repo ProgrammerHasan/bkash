@@ -1,6 +1,6 @@
 {
   "name": "programmerhasan/bkash",
-  "description": "Bkash Payment Integration for Laravel",
+  "description": "Bkash Payment Integration for Laravel.",
   "type": "library",
   "license": "MIT",
   "authors": [
