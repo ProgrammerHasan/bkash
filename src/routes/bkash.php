@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use ProgrammerHasan\Bkash\App\Controllers\BkashPaymentController;
+use App\Http\Controllers\BkashPaymentController;
 
 Route::group(['middleware' => ['web']], static function () {
     // Payment routes for bKash
@@ -19,8 +19,6 @@ Route::group(['middleware' => ['web']], static function () {
     Route::get('/bkash/refund', [BkashPaymentController::class, 'refund'])->name('bkash.payment.refund');
     Route::get('/bkash/refund/status', [BkashPaymentController::class, 'refundStatus'])->name('bkash.payment.refund.status');
 });
-
-
 
 
 
