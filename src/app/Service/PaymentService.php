@@ -200,7 +200,7 @@ class PaymentService extends BkashService
         }
     }
 
-    public function refundTransaction($paymentID, $trxID, $amount)
+    public function refundTransaction($paymentID, $trxID, $amount, $reason = null, $sku = null)
     {
         try {
             $res = $this->httpClient()->post($this->credential->getURL('/checkout/payment/refund'), [
@@ -208,8 +208,8 @@ class PaymentService extends BkashService
                     'paymentID' => $paymentID,
                     'trxID' => $trxID,
                     'amount' => strval($amount),
-                    'sku' => 'no SKU',
-                    'reason' => 'Product quality issue'
+                    'sku' => $sku ?? 'no SKU',
+                    'reason' => $reason ?? 'Product quality issue'
                 ],
                 'headers' => $this->credential->getAccessHeaders($this->bkashAuthService->getToken()),
             ]);

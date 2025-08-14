@@ -32,6 +32,9 @@ class BkashPaymentController extends Controller
 
         if (isset($response['bkashURL'])) return redirect()->away($response['bkashURL']);
         else return redirect()->back()->with('error-alert2', $response['statusMessage']);
+
+        // or you can use like : $response = BkashPayment::create($data);
+        // return $response->bkashURL;
     }
 
     public function callback(Request $request)

@@ -38,9 +38,9 @@ class BkashPayment
         return $this->paymentService->searchTransaction($trxID);
     }
 
-    public function refund($paymentID, $trxID, $amount)
+    public function refund($paymentID, $trxID, $amount, $reason = null, $sku = null)
     {
-        return $this->paymentService->refundTransaction($paymentID, $trxID, $amount);
+        return $this->paymentService->refundTransaction($paymentID, $trxID, $amount, $reason, $sku);
     }
 
     public function capture($paymentID)

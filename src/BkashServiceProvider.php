@@ -18,7 +18,6 @@ class BkashServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . "/config/bkash.php", "bkash");
 
-
         $this->app->bind("BkashPayment", function () {
             return new BkashPayment();
         });
@@ -37,11 +36,14 @@ class BkashServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__ . '/routes/bkashRoutes.php');
-
         $this->publishes([
             __DIR__ . "/config/bkash.php" => config_path("bkash.php")
-        ]);
+        ], 'config');
+        $this->publishes([
+            __DIR__.'/Controllers/BkashPaymentController.php' => app_path('Http/Controllers/BkashPaymentController.php'),
+        ],'controllers');
+
+        $this->loadRoutesFrom(__DIR__ . '/routes/bkash.php');
 
         $this->renderBkashException();
     }
