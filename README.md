@@ -87,6 +87,11 @@ Logs will be saved in the /storage/logs/laravel.log file.
 ```
 
 ## 🚀 Usage
+### Publish a route
+
+```bash
+php artisan vendor:publish --provider="ProgrammerHasan\Bkash\BkashServiceProvider" --tag="routes"
+```
 
 ### Publish a controller
 
